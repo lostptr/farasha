@@ -27,22 +27,22 @@ jobs:
         name: production-files
         path: ./dist
     
-    deploy:
-      needs: build
-      runs-on: ubuntu-latest
-      if: github.ref == 'refs/heads/master'
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
 
-      steps:
-        - name: Download Artifact
-          uses: actions/download-artifacts@v3
-          with:
-              name: production-files
-              path: ./dist
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifacts@v3
+        with:
+            name: production-files
+            path: ./dist
 
-        - name: Deploy to GiHub Pages
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-              github_token: ${{ secrets.GITHUB_TOKEN }}
-              publish_dir: ./dist
+      - name: Deploy to GiHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./dist
 
   
