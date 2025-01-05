@@ -21,7 +21,7 @@ export default function Library() {
   return (
     <Container p="md">
       <Flex style={{ marginBottom: 16 }}>
-        <Button component="a" href="/create">
+        <Button component="a" href="./create">
           Create
         </Button>
       </Flex>
