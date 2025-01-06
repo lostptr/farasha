@@ -1,7 +1,13 @@
 import { Button, Container, Group, Stepper } from "@mantine/core";
 import { useState } from "react";
+import GeneralInfo from "./GeneralInfo";
+import { CharacterSheet, createBlankSheet } from "../../CharacterSheet";
+import { saveSheet } from "../../useSheetQuery";
+import { useNavigate } from "react-router-dom";
+import TraitSelection from "./TraitSelection";
 
 export default function Creation() {
+  const navigate = useNavigate();
   const [active, setActive] = useState<number>(0);
   const stepCount = 3;
   const nextStep = () =>
@@ -11,13 +17,23 @@ export default function Creation() {
   const prevStep = () =>
     setActive((current: number) => (current > 0 ? current - 1 : current));
 
-  const finish = () => {};
+  const finish = () => {
+    console.log(JSON.stringify(sheet));
+    saveSheet(sheet);
+    navigate("/");
+  };
+
+  const [sheet, setSheet] = useState<CharacterSheet>(() => createBlankSheet());
 
   return (
     <Container p="md">
       <Stepper active={active}>
-        <Stepper.Step label="General Info">General Info</Stepper.Step>
-        <Stepper.Step label="Traits">Choose your traits</Stepper.Step>
+        <Stepper.Step label="General Info">
+          <GeneralInfo sheet={sheet} setSheet={setSheet} />
+        </Stepper.Step>
+        <Stepper.Step label="Traits">
+          <TraitSelection sheet={sheet} setSheet={setSheet} />
+        </Stepper.Step>
         <Stepper.Step label="Path">Choose thy path</Stepper.Step>
       </Stepper>
 
