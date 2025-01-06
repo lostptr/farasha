@@ -6,17 +6,21 @@ import {
   Flex,
   SimpleGrid,
 } from "@mantine/core";
+import { useSheetQuery } from "../../useSheetQuery";
+import { CharacterSheet } from "../../CharacterSheet";
 
 export default function Library() {
-  const card = (
+  const sheets = useSheetQuery();
+
+  const card = (sheet: CharacterSheet) => (
     <Paper shadow="xs" p="sm">
-      <Text size="xl">Mrs. Blackwood</Text>
+      <Text size="xl">{sheet.name}</Text>
       <Text size="md" c="dimmed">
-        Milestone 1
+        {sheet.playerName}
       </Text>
     </Paper>
   );
-  const cards = [...Array(5).keys()].map(() => card);
+  const cards = sheets.map(card);
 
   return (
     <Container p="md">
