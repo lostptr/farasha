@@ -6,7 +6,6 @@ import Creation from "./pages/Creation/Creation";
 export const routes = createBrowserRouter(
   [
     {
-      path: "/",
       element: <App />,
       children: [
         {
@@ -20,5 +19,5 @@ export const routes = createBrowserRouter(
       ],
     },
   ],
-  { basename: "/farasha" },
+  { basename: "/farasha/" },
 );

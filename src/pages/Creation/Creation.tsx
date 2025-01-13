@@ -1,13 +1,18 @@
 import { Button, Container, Group, Stepper } from "@mantine/core";
 import { useState } from "react";
 import GeneralInfo from "./GeneralInfo";
-import { CharacterSheet, createBlankSheet } from "../../CharacterSheet";
-import { saveSheet } from "../../useSheetQuery";
 import { useNavigate } from "react-router-dom";
 import TraitSelection from "./TraitSelection";
+import { CharacterSheet } from "@types";
+import { createBlankSheet } from "@utils/sheet";
+import { useDispatch } from "react-redux";
+import { addSheet } from "@store/library";
 
 export default function Creation() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [sheet, setSheet] = useState<CharacterSheet>(() => createBlankSheet());
+
   const [active, setActive] = useState<number>(0);
   const stepCount = 3;
   const nextStep = () =>
@@ -18,12 +23,10 @@ export default function Creation() {
     setActive((current: number) => (current > 0 ? current - 1 : current));
 
   const finish = () => {
-    console.log(JSON.stringify(sheet));
-    saveSheet(sheet);
-    navigate("/");
+    dispatch(addSheet(sheet));
+    navigate("../");
   };
 
-  const [sheet, setSheet] = useState<CharacterSheet>(() => createBlankSheet());
 
   return (
     <Container p="md">
