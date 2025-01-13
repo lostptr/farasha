@@ -13,6 +13,14 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    "paths": {
+      "@types": ["./src/types"],
+      "@components": ["./src/components"],
+      "@store/*": ["./src/store/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@utils/*": ["./src/utils/*"]
+    },
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,

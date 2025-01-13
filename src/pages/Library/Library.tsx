@@ -6,14 +6,17 @@ import {
   Flex,
   SimpleGrid,
 } from "@mantine/core";
-import { useSheetQuery } from "../../useSheetQuery";
-import { CharacterSheet } from "../../CharacterSheet";
+import { CharacterSheet } from "../../types/CharacterSheet";
+import { useSelector } from "react-redux";
+import { RootState } from "@store/index";
+import { useNavigate } from "react-router-dom";
 
 export default function Library() {
-  const sheets = useSheetQuery();
+  const navigate = useNavigate();
+  const sheets = useSelector((state: RootState) => state.library.sheets);
 
   const card = (sheet: CharacterSheet) => (
-    <Paper shadow="xs" p="sm">
+    <Paper shadow="xs" p="sm" key={sheet.key}>
       <Text size="xl">{sheet.name}</Text>
       <Text size="md" c="dimmed">
         {sheet.playerName}
@@ -25,7 +28,7 @@ export default function Library() {
   return (
     <Container p="md">
       <Flex style={{ marginBottom: 16 }}>
-        <Button component="a" href="./create">
+        <Button onClick={() => navigate("./create")}>
           Create
         </Button>
       </Flex>

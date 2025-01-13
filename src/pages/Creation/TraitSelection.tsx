@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CharacterSheet } from "../../CharacterSheet";
+import { CharacterSheet } from "../../types/CharacterSheet";
 import { TextInput } from "@mantine/core";
 
 interface Props {
