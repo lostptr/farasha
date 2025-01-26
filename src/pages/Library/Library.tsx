@@ -7,7 +7,6 @@ import {
   SimpleGrid,
   Menu,
   ActionIcon,
-  Modal,
 } from "@mantine/core";
 import { CharacterSheet } from "../../types/CharacterSheet";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +16,7 @@ import { MdDeleteForever, MdOutlineMoreVert } from "react-icons/md";
 import { removeSheet } from "@store/library";
 import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
+import { Dialog } from "@components";
 
 export default function Library() {
   const navigate = useNavigate();
@@ -31,8 +31,10 @@ export default function Library() {
     open();
   };
 
-  const deleteSheet = () => {
-    dispatch(removeSheet({ key: selectedSheet }));
+  const deleteSheet = (option: boolean) => {
+    if (option) {
+      dispatch(removeSheet({ key: selectedSheet }));
+    }
     close();
   };
 
@@ -75,13 +77,13 @@ export default function Library() {
       </Flex>
       <SimpleGrid cols={4}>{cards}</SimpleGrid>
 
-      <Modal opened={opened} onClose={close} title="Are you sure?" centered>
-        <Text>You won't be able to recover this sheet after you delete it.</Text>
-        <div style={{ display: "flex", columnGap: 16, flexDirection: "row-reverse", marginTop: 32 }}>
-          <Button onClick={() => deleteSheet()} variant="filled" color="red">Yes, delete it</Button>
-          <Button onClick={close} variant="default">No</Button>
-        </div>
-      </Modal>
+      <Dialog
+        opened={opened}
+        title="Are you sure?"
+        message="This action cannot be undone!"
+        onSubmit={deleteSheet}
+        confirmMessage="Yes, delete it"
+      ></Dialog>
     </Container>
   );
 }
