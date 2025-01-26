@@ -19,8 +19,13 @@ export default function Creation() {
     setActive((current: number) =>
       current < stepCount - 1 ? current + 1 : current,
     );
-  const prevStep = () =>
-    setActive((current: number) => (current > 0 ? current - 1 : current));
+  const prevStep = () => {
+    if (active === 0) {
+      navigate("../");
+    } else {
+      setActive((current: number) => (current > 0 ? current - 1 : current));
+    }
+  }
 
   const finish = () => {
     dispatch(addSheet(sheet));
