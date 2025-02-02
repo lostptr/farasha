@@ -4,16 +4,15 @@ import { CharacterSheet } from "@types";
 type SheetState = CharacterSheet;
 
 const initialState: SheetState = {
-  key: '',
-  name: '',
-  playerName: '',
+  key: "",
+  name: "",
+  playerName: "",
 };
 
 const sheetSlice = createSlice({
   name: "sheet",
   initialState,
-  reducers: {
-  },
+  reducers: {},
 });
 
 // export const {} = sheetSlice.actions;

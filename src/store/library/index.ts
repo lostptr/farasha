@@ -6,7 +6,7 @@ interface LibraryState {
 }
 
 const initialState: LibraryState = {
-  sheets: []
+  sheets: [],
 };
 
 const librarySlice = createSlice({
@@ -16,9 +16,9 @@ const librarySlice = createSlice({
     addSheet: (state, action: PayloadAction<CharacterSheet>) => {
       state.sheets = [...state.sheets, action.payload];
     },
-    removeSheet: (state, action: PayloadAction<{key: string}>) => {
-      state.sheets = state.sheets.filter(c => c.key !== action.payload.key);
-    }
+    removeSheet: (state, action: PayloadAction<{ key: string }>) => {
+      state.sheets = state.sheets.filter((c) => c.key !== action.payload.key);
+    },
   },
 });
 
