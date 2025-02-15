@@ -45,21 +45,31 @@ export default function Creation() {
     <Container p="md">
       <Stepper active={active}>
         <Stepper.Step label="General Info">
-          <GeneralInfo sheet={sheet} setSheet={setSheet} />
+          <GeneralInfo
+            sheet={sheet}
+            setSheet={setSheet}
+            onBackPressed={prevStep}
+            onNextPressed={nextStep}
+          />
         </Stepper.Step>
         <Stepper.Step label="Traits">
-          <TraitSelection sheet={sheet} setSheet={setSheet} />
+          <TraitSelection
+            sheet={sheet}
+            setSheet={setSheet}
+            onBackPressed={prevStep}
+            onNextPressed={nextStep}
+          />
         </Stepper.Step>
-        <Stepper.Step label="Path">Choose thy path</Stepper.Step>
+        <Stepper.Step label="Path">
+          Choose thy path
+          <Group justify="space-between" mt="xl">
+            <Button variant="default" onClick={prevStep}>
+              Back
+            </Button>
+            <Button onClick={finish}>Finish</Button>
+          </Group>
+        </Stepper.Step>
       </Stepper>
-
-      <Group justify="space-between" mt="xl">
-        <Button variant="default" onClick={prevStep}>
-          Back
-        </Button>
-        {active < stepCount - 1 && <Button onClick={nextStep}>Next</Button>}
-        {active >= stepCount - 1 && <Button onClick={finish}>Finish</Button>}
-      </Group>
 
       <Dialog
         opened={opened}

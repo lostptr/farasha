@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
-import { CharacterSheet } from "../../types/CharacterSheet";
-import { TextInput } from "@mantine/core";
+import { Button, Group, TextInput } from "@mantine/core";
+import { StepProps } from "./types";
 
-interface Props {
-  sheet: CharacterSheet;
-  setSheet: React.Dispatch<React.SetStateAction<CharacterSheet>>;
-}
-
-export default function TraitSelection({ sheet, setSheet }: Props) {
+export default function TraitSelection({ sheet, setSheet, onBackPressed, onNextPressed }: StepProps) {
   const [playerName, setPlayerName] = useState(sheet.playerName);
   useEffect(() => {
     setSheet({
@@ -15,6 +10,15 @@ export default function TraitSelection({ sheet, setSheet }: Props) {
       playerName,
     });
   }, [playerName]);
+  
+  const back = () => {
+    onBackPressed();
+  };
+
+  const next = () => {
+    onNextPressed();
+  };
+
 
   return (
     <>
@@ -24,6 +28,15 @@ export default function TraitSelection({ sheet, setSheet }: Props) {
         value={playerName}
         onChange={(e) => setPlayerName(e.currentTarget.value)}
       />
+      
+
+        <Group justify="space-between" mt="xl">
+          <Button variant="default" onClick={back}>
+            Back
+          </Button>
+          <Button onClick={next}>Next</Button>
+        </Group>
+ 
     </>
   );
 }

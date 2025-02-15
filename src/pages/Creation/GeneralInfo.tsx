@@ -1,21 +1,18 @@
 import {
   ActionIcon,
-  Center,
+  Button,
+  Group,
   Paper,
   RangeSlider,
-  SegmentedControl,
   Textarea,
+  Text,
   TextInput,
+  Title,
 } from "@mantine/core";
-import {
-  BASE_STATS,
-  BLANK_STATS,
-  BugSize,
-  CharacterSheet,
-} from "../../types/CharacterSheet";
+import { BASE_STATS, BLANK_STATS, BugSize } from "../../types/CharacterSheet";
 import { ReactNode, useEffect, useState } from "react";
-import { useThrottle } from "@utils/hooks";
 import {
+  FaCheck,
   FaCircle,
   FaFireFlameCurved,
   FaHeart,
@@ -24,14 +21,23 @@ import {
   FaPlus,
   FaRegCircle,
 } from "react-icons/fa6";
+import { StepProps } from "./types";
+import { useField } from "@mantine/form";
 
-interface Props {
-  sheet: CharacterSheet;
-  setSheet: React.Dispatch<React.SetStateAction<CharacterSheet>>;
-}
-
-export default function GeneralInfo({ sheet, setSheet }: Props) {
-  const [name, setName] = useState(sheet.name);
+export default function GeneralInfo({
+  sheet,
+  setSheet,
+  onBackPressed,
+  onNextPressed,
+}: StepProps) {
+  const validateRequiredField =
+    (message: string) => (value: string | undefined) =>
+      value ? null : message;
+  const nameField = useField({
+    initialValue: sheet.name,
+    validateOnBlur: true,
+    validate: validateRequiredField("The name field is required."),
+  });
   const [player, setPlayer] = useState(sheet.playerName);
   const [description, setDescription] = useState(sheet.description);
   const [size, setSize] = useState(sheet.size);
@@ -43,24 +49,38 @@ export default function GeneralInfo({ sheet, setSheet }: Props) {
   useEffect(() => {
     if (size) {
       setStats(BASE_STATS[size]);
-      setCute(BASE_STATS[size].cute);
       setBonusCuteSpook(BASE_STATS[size].bonusCuteSpook);
+      setCute(BASE_STATS[size].cute);
       setSpook(BASE_STATS[size].spook);
     }
   }, [size]);
 
-  // use debounce!!!
-  const saveSheet = useThrottle(() => {
-    console.log("changed");
+  const back = () => {
+    onBackPressed();
+  };
+
+  const next = () => {
     setSheet({
       ...sheet,
-      name,
+      name: nameField.getValue(),
+      playerName: player,
       description,
       size,
-      playerName: player,
+      stats: {
+        might: stats.might,
+        insight: stats.insight,
+        shell: stats.shell,
+        grace: stats.grace,
+        heart: stats.heart,
+        stamina: stats.stamina,
+        soul: stats.soul,
+        speed: stats.speed,
+        cute: stats.cute,
+        spook: stats.spook,
+      }
     });
-  }, 1000);
-  useEffect(saveSheet, [name, player, description, size]);
+    onNextPressed();
+  };
 
   const simpleStatSlot = (name: string, value: number) => {
     return (
@@ -161,7 +181,7 @@ export default function GeneralInfo({ sheet, setSheet }: Props) {
             variant="default"
             size="lg"
             radius="md"
-            disabled={bonusCuteSpook >= stats.bonusCuteSpook}
+            disabled={value === baseValue}
             onClick={decreaseCounter(baseValue, value, setValue)}
           >
             <FaMinus />
@@ -177,25 +197,39 @@ export default function GeneralInfo({ sheet, setSheet }: Props) {
       .map((x) => value > x);
   };
 
+  const sizeButtonClick = (value: BugSize) => {
+    setSize(size === value ? undefined : value);
+  };
+
+  const sizeButton = (value: BugSize, label: string) => {
+    return (
+      <Button
+        leftSection={size === value ? <FaCheck /> : <></>}
+        variant={size === value ? "light" : "default"}
+        onClick={() => sizeButtonClick(value)}
+      >
+        {label}
+      </Button>
+    );
+  };
+
   const hungerRange: [number, number] = [stats.hungerStart, stats.hungerMax];
 
   return (
     <>
-      <p>editing sheet {sheet.key}</p>
-
       <div style={{ display: "flex", columnGap: 16 }}>
         <TextInput
+          withAsterisk
           style={{ flexGrow: 1 }}
           label="Character name"
-          value={name}
-          onChange={(e) => setName(e.currentTarget.value)}
+          {...nameField.getInputProps()}
         />
 
         <TextInput
           style={{ flexGrow: 1 }}
           label="Player name"
           value={player}
-          onChange={(e) => setPlayer(e.currentTarget.value)}
+          onChange={(event) => setPlayer(event.target.value)}
         />
       </div>
 
@@ -205,21 +239,22 @@ export default function GeneralInfo({ sheet, setSheet }: Props) {
         onChange={(e) => setDescription(e.currentTarget.value)}
       />
 
-      <h3>Bug Size</h3>
-      <div style={{ display: "flex", marginTop: 16 }}>
-        <SegmentedControl
-          size="lg"
-          withItemsBorders={false}
-          orientation="vertical"
-          value={size}
-          onChange={(v: string) => setSize(v as BugSize)}
-          data={[
-            { label: "Small", value: "small" },
-            { label: "Medium", value: "medium" },
-            { label: "Large", value: "large" },
-          ]}
-        />
+      <Title order={3} style={{ marginTop: 24, marginBottom: 12 }}>
+        Bug Size
+        <Text span inherit c="red">
+          *
+        </Text>
+      </Title>
 
+      <Group>
+        {sizeButton("small", "Small")}
+        {sizeButton("medium", "Medium")}
+        {sizeButton("large", "Large")}
+
+        {!size && <Text c="red">Choose a size for your bug</Text>}
+      </Group>
+
+      <div style={{ display: "flex", marginTop: 16 }}>
         {size && (
           <div
             style={{
@@ -260,6 +295,9 @@ export default function GeneralInfo({ sheet, setSheet }: Props) {
 
               <div style={{ padding: 8 }}>
                 Assign bonus to Cute or Spook:
+                <Text span inherit c="red">
+                  *
+                </Text>
                 <div
                   style={{
                     display: "inline-flex",
@@ -308,18 +346,14 @@ export default function GeneralInfo({ sheet, setSheet }: Props) {
             </div>
           </div>
         )}
-
-        {!size && (
-          <Center style={{ flexGrow: 1 }}>
-            <Paper
-              style={{ padding: 12 }}
-              bg="var(--mantine-color-yellow-light)"
-            >
-              Choose the size of your bug
-            </Paper>
-          </Center>
-        )}
       </div>
+
+      <Group justify="space-between" mt="xl">
+        <Button variant="default" onClick={back}>
+          Back
+        </Button>
+        <Button disabled={!!nameField.error || !size || bonusCuteSpook > 0} onClick={next}>Next</Button>
+      </Group>
     </>
   );
 }

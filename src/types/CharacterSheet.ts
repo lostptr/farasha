@@ -4,11 +4,12 @@ export interface CharacterSheet {
   playerName?: string;
   description?: string;
   size?: BugSize;
+  stats?: Stats,
 }
 
 export type BugSize = "small" | "medium" | "large";
 
-export interface TemplateStats {
+export type Stats = {
   might: number;
   insight: number;
   shell: number;
@@ -18,8 +19,11 @@ export interface TemplateStats {
   soul: number;
   cute: number;
   spook: number;
-  bonusCuteSpook: number;
   speed: number;
+};
+
+export type TemplateStats = Stats & {
+  bonusCuteSpook: number;
   hungerStart: number;
   hungerMax: number;
 }
