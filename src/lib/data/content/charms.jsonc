@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "name": "Agile Instinct",
+    "category": "general",
+    "notches": 2,
+    "rarity": "uncommon",
+    "description": [
+      "For 1 stamina, the bearer may choose to Soak any kind of damage using Grace, instead of Shell. An attack fully Soaked this way is treated as if it were dodged.",
+    ],
+  },
+  {
+    "id": 999,
+    "name": "Twisted Hourglass",
+    "category": "general",
+    "rarity": "unque",
+    "description": [
+      "When afflicted by a DoT that would inflict its damage at the start of their turn, the bearer instead takes that damage at the end of their turn.",
+    ],
+    "quote": [
+      "Born of presumptuous ego, and twisted love. To hold an abomination in one’s heart. To her end she wished only to stop the flowing of hourglass, that she may remain with him. Instead her hollow remains became the mother of monsters.",
+    ],
+  },
+]

@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "name": "Nail",
+    "type": ["nail"],
+    "damage": 3,
+    "range": ["melee"],
+    "hands": 1,
+    "bulk": 1,
+    "cost": 100,
+    "description": ["The wielder rerolls one failed die when attacking with a Nail."],
+  },
+  {
+    "id": 4,
+    "name": "Needle",
+    "type": ["needle"],
+    "damage": 3,
+    "range": ["melee", 3], // this means ranged(3)
+    "hands": 1,
+    "bulk": 1,
+    "cost": 100,
+    "description": [
+      "A Needle can be drawn during Initiative, granting a +2 die bonus on the Initiative check. Does not stack with other weapon bonuses.",
+    ],
+  },
+  {
+    "id": 5,
+    "name": "Darning Needle",
+    "type": ["needle", "tusk"],
+    "damage": 3,
+    "range": ["reach"],
+    "hands": 2,
+    "bulk": 2,
+    "cost": 200,
+    "description": [
+      "A Darning Needle can be drawn during Initiative, granting a +1 die bonus on the Initiative check. Does not stack with other weapon bonuses.",
+      "When making an attack immediately after a Dash, Jump or Pogo Strike, it deals +1 damage.",
+    ],
+  },
+]

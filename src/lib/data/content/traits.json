@@ -1,0 +1,596 @@
+[
+  {
+    "id": "crusing_mandibles",
+    "name": "Crusing Mandibles",
+    "category": "Natural Weapons",
+    "cost": { "hunger": 1, "creep": 0.5 },
+    "description": [
+      "This bug has large mandibles capable of tearing through flesh. These are a natural bite weapon which deals 2 damage. The mandibles may be dedicated to grapples as if they were a limb."
+    ]
+  },
+  {
+    "id": "oversized_mandibles",
+    "name": "Oversized Mandibles",
+    "subtrait": ["crusing_mandibles"],
+    "category": "Natural Weapons",
+    "cost": { "hunger": 2, "creep": 0.5, "cute": -0.5 },
+    "description": [
+      "This bug's mandibles are incredibly huge, dealing 3 damage instead of 2, and granting a +2 die bonus on checks to grapple or maintain a grapple they are dedicated to.",
+      "Oversized Mandibles have 1 bulk."
+    ]
+  },
+  {
+    "id": "exotic_venom",
+    "name": "Exotic Venom",
+    "incompatible": [14],
+    "subtrait": ["unknown"],
+    "category": "Natural Weapons",
+    "cost": {
+      "Common Poison or Flask": { "hunger": 0 },
+      "Uncommon Poison or Flask": { "hunger": 2 }
+    },
+    "description": [
+      "May be taken as a sub-Trait of any Trait which inflicts DoT as part of a Status Effect. The bug's venom takes the effects of a poison, or a targeted or ingested flask effect, instead of its normal DoT. The effects of the flask can be flavored differently, such as glue being a venom that makes the target sluggish. If taken as a Subtrait of Stinger, reduce the Hunger cost by 2.",
+      "The bug gains the recipe of their Exotic Venom, and can produce it even without the correct Stash Path, as long as they have any source of Stash."
+    ]
+  },
+  {
+    "id": "horn",
+    "name": "Horn",
+    "category": "Natural Weapons",
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug has a large horn atop its head. This is a natural weapon which deals 2 damage. The first successful hit with a horn attack each round also causes one stack of Off-Balance to the target."
+    ]
+  },
+  {
+    "id": "irritant_bristles",
+    "name": "Irritant Bristles",
+    "category": "Natural Weapons",
+    "cost": { "hunger": 3, "cute": 0.5 },
+    "description": [
+      "This bug has bristles that lodge into attackers. Whenever a bug hits this bug with an attack from within 3 squares, they are inflicted with a 3-point Status Effect that gives all rolls beside Shell checks a -1 die penalty per 3 points of the status, to a minimum of -1. The victim may resist this effect with a Shell check, reducing the duration of the Status Effect by 1 point for each success.",
+      "The bug may also attack with the bristles as a range 3 or melee natural weapon, dealing no damage besides the Status Effect."
+    ]
+  },
+  {
+    "id": "natural_projectile",
+    "name": "Natural Projectile",
+    "category": "Natural Weapons",
+    "cost": { "hunger": 4 },
+    "description": [
+      "This bug can launch a projectile from its body. It deals 2 damage and has a range of 4 squares. This natural weapon has the Sling weapon type. This Trait may not have multiple Sub-Traits unless otherwise stated, but may be taken multiple times with different Sub-Traits on each."
+    ]
+  },
+  {
+    "id": "crippling_shot",
+    "name": "Crippling Shot",
+    "subtrait": ["natural_projectile"],
+    "category": "Natural Weapons",
+    "cost": { "hunger": 0 },
+    "description": [
+      "The projectile deals no damage, instead inflicting a debuff. When this trait is taken, choose a Primary Attribute, Pool, or Speed. When the projectile hits, the affected bug makes a Shell check. The hit lowers the Attribute or maximum Pool by 1 point, unless it accrues 2 successes on the Shell check. This is a debuff with a pool equal to the damage the attack would have dealt. For every 2 points in the pool, the debuff's effect increases by 1."
+    ]
+  },
+  {
+    "id": "fluids",
+    "name": "Fluids",
+    "subtrait": ["natural_projectile"],
+    "category": "Natural Weapons",
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug's projectile can contain a certain concoction. Choose one common flask effect, or one uncommon flask effect for +2 Hunger. Instead of its normal damage, the projectile delivers that flask's effects. Even if the flask effect normally has an AoE, it will not affect this bug's square unless this bug chooses for it to do so.",
+      "The bug gains the recipe of their Fluids, and can produce it even without the correct Stash Path, as long as they have any source of Stash."
+    ]
+  },
+  {
+    "id": "heavy_shot",
+    "name": "Heavy Shot",
+    "subtrait": ["natural_projectile"],
+    "category": "Natural Weapons",
+    "cost": { "hunger": 0 },
+    "description": [
+      "The projectile deals 1 more damage and is considered a heavy weapon.",
+      "Can be taken with Crippling Shot, Obscuring Shot or Spray."
+    ]
+  },
+  {
+    "id": "obscuring_shot",
+    "name": "Obscuring Shot",
+    "subtrait": ["natural_projectile"],
+    "category": "Natural Weapons",
+    "cost": { "hunger": 0 },
+    "description": [
+      "The projectile deals no damage, instead targeting the senses of other bugs. When this bug makes an attack with its natural projectile, it chooses a sense to target. The bug hit loses access to the sense, in the form of a debuff with a pool equal to the damage the attack would have dealt."
+    ]
+  },
+  {
+    "id": "spray",
+    "name": "Spray",
+    "category": "Natural Weapons",
+    "cost": {
+      "Default": { "hunger": 0 },
+      "With Crippling Shot, Obscuring Shot or Fluids": { "hunger": 2 }
+    },
+    "description": [
+      "The projectile affects a Cone of short, long or wide size, chosen when this trait is taken. It costs 1 extra tax Stamina to use, which also applies to attacks made with weapon arts. It is resolved as an AoE.",
+      "May be taken with Crippling Shot, Obscuring Shot or Fluids at the cost of +2 Hunger."
+    ]
+  },
+  {
+    "id": "natural_secretion",
+    "name": "Natural Secretion",
+    "category": "Natural Weapons",
+    "tags": ["stash", "flask", "terrain"],
+    "cost": { "hunger": 3, "cute_or_creep": 0.5 },
+    "description": [
+      "When this trait is chosen, pick any single common or uncommon flask. During their turn, this bug may spend Stamina equal to the Stash cost of the chosen flask to gain a 2-point Status Effect. If the chosen flask is Rejuvenating or Terrain+, its Targeted or Ingested effect may be used on this bug, or its Terrain effect may target this bug's square. Doing so ends the Status Effect immediately.",
+      "While under this Status Effect, this bug is covered in that substance, and applies its Targeted effects to bugs engaged in a grapple with this bug, or attacking it with natural melee weapons; or applies its Terrain effects to the square of that bug, and only that square.",
+      "When the secreting bug takes damage, Terrain flask effects apply to adjacentsquares. Dodging the effect as an AoE requires 1 success. Rejuvenating effects of the secretion may apply once per use of this ability, per bug. Flask effects can only be triggered once by the same attack or grapple.",
+      "Additionally, this bug is immune to the harmful effects of their own secretions."
+    ]
+  },
+  {
+    "id": "secretion_trail",
+    "name": "Secretion Trail",
+    "subtrait": ["natural_secretion"],
+    "tags": ["stash", "flask", "terrain"],
+    "category": "Natural Weapons",
+    "cost": { "hunger": 3 },
+    "description": [
+      "This bug can instead release a trail of their natural secretions by spending Stamina equal to the Stash cost of the chosen flask. Every square this bug moves through on this turn is covered by the secretions, applying any Terrain effects to the square until the end of the bug’s next turn.",
+      "When a bug crosses the trail for the first time in a turn, or begins its turn in the trail, it is afflicted with the secretion’s targeted effects. If the secretions have a Terrain+ effect, this bug may choose for the trail to have no effect other than to detonate at the end of its turn, removing the trail and applying the secretion’s Terrain effect to all squares on or adjacent to the trail, as an AoE with 1 success.",
+      "Rejuvenating effects of the secretion may only apply once per use of this ability, per bug."
+    ]
+  },
+  {
+    "id": "natural_tool",
+    "name": "Natural Tool",
+    "category": "Natural Weapons",
+    "tags": ["tool"],
+    "cost": { "hunger": 1 },
+    "description": [
+      "This bug has a body part or appendage that can be used as a certain Tool, chosen when taking this trait, but which cannot be used as a Tool weapon. This Tool has 1 Quality, and Minor Advancements may be spent to increase its Quality. Tools that fill a very specific role may have increased Quality, such as claws that specifically excel at digging through ice, or a flint-like shell that can be struck to start small flames."
+    ]
+  },
+  {
+    "id": "paralyzing_venom",
+    "name": "Paralyzing Venom",
+    "category": "Natural Weapons",
+    "tags": ["status_effect"],
+    "subtrait": [],
+    "cost": { "hunger": 0 },
+    "description": [
+      "Paralyzing Venom may be taken as a sub-Trait of any Trait which inflicts DoT as part of a Status Effect. In place of DoT, twice as many stacks of the Paralyzing Venom are applied, though the bug may apply less venom if they wish.",
+      "Paralyzing Venom is a Status Effect that gains additional effects depending on how many stacks the bug is afflicted with and are detailed in the following table.",
+      "## Effects of Paralyzing Venom",
+      "<table><thead><tr><th>Stacks</th><th>Effects</th></tr></thead><tbody><tr><td>1</td><td>The afflicted bug’s maximum Stamina is decreased by 1 for as long as it has this status.</td></tr><tr><td>5</td><td>The afflicted bug receives a -1 die penalty to attack and defense rolls.</td></tr><tr><td>10</td><td>This status takes a scene rather than a round for a point to decay, and may no longer be burned off with Stamina.</td></tr><tr><td>15</td><td>The afflicted falls unconscious and remains so until this status drops below 15 points.</td></tr><tr><td>20+</td><td>The afflicted bug dies of organ failure.</td></tr></tbody></table>"
+    ]
+  },
+  {
+    "id": "pincers",
+    "name": "Pincers",
+    "category": "Natural Weapons",
+    "cost": { "hunger": 1, "creep": 0.5 },
+    "description": [
+      "This bug has a pair of formidable pincers at the end of two of its arms. These are natural weapons which deal 1 damage. They have +2 rerolls on checks to grapple or maintain a grapple they are dedicated to. Pincers are a 2 damage weapon against bugs already grappled by them. Pincers may be used for Unarmed Arts."
+    ]
+  },
+  {
+    "id": "oversized_pincers",
+    "name": "Oversized Pincers",
+    "tags": ["tusk", "grapple"],
+    "subtrait": ["pincers"],
+    "category": "Natural Weapons",
+    "cost": { "hunger": 5, "cute": -0.5, "creep": 0.5 },
+    "description": [
+      "One or both of the pincers now deal 3 damage instead of 1, and 4 to bugs already grappled by them.",
+      "Oversized pincers cannot wield things such as weapons and shields effectively, or perform dexterous tasks that normally require fingers or similar implements. Oversized pincers have 1 Bulk and are a Tusk weapon."
+    ]
+  },
+  {
+    "id": "scythe_arms",
+    "name": "Scythe Arms",
+    "category": "Natural Weapons",
+    "cost": { "creep": 0.5 },
+    "description": [
+      "Two of this bug's arms end in scythes, which are natural weapons that deal 2 damage, and can always be paired with one another. Scythe arms can grasp objects, but not perform dexterous tasks such as wielding a weapon or shield effectively.",
+      "Scythe arms count as any one weapon type for Arts, chosen at character creation, and begin with a weapon modifier, though may not obtain another by spending an Attribute advancement."
+    ]
+  },
+  {
+    "id": "sharp_claws",
+    "name": "Sharp Claws",
+    "category": "Natural Weapons",
+    "cost": { "hunger": 1 },
+    "description": [
+      "This bug's fingers are tipped with vicious claws, which deal 1 damage, and can always be paired with any weapon. They may hold objects and perform dexterous actions without penalty, but require a free hand to use. When a sharp claw strikes as a paired attack, its base damage increases by 1."
+    ]
+  },
+  {
+    "id": "sharp_proboscis",
+    "name": "Sharp Proboscis",
+    "category": "Natural Weapons",
+    "cost": { "hunger": 1 },
+    "description": [
+      "This bug possesses a long needle-like mouth. This is a natural bite weapon that deals 1 damage. It bypasses the damage reduction of armor, and Soak rolls against it are made at -2. If the bug has Bloodsucker, they regain the full value of Belly they drain through their proboscis."
+    ]
+  },
+  {
+    "id": "slam",
+    "name": "Slam",
+    "category": "Natural Weapons",
+    "cost": {
+      "Small": { "hunger": 1 },
+      "Average": { "hunger": 2 },
+      "Large": { "hunger": 3 }
+    },
+    "description": [
+      "This bug is weighted to allow it to throw its bulk around to knock out the competition. If the bug moves at least 1 space toward a target or performs a jump action, it can make a single Slam attack against that target which deals 2 damage for a Small bug, 3 for an Average bug, and 4 for a Large bug. Attempts to parry it are made at -2.",
+      "Large Slam attacks are a heavy weapon, and Average Slam attacks are 1 Bulk."
+    ]
+  },
+  {
+    "id": "spiky",
+    "name": "Spiky",
+    "category": "Natural Weapons",
+    "cost": { "hunger": 3, "creep": 0.5 },
+    "description": [
+      "This bug is partially covered in spikes, and may use these as a natural weapon dealing 2 damage. Additionally, whenever this bug is grappled or attacked with a natural weapon and is hit or parries with the spikes, the attacker takes soakable damage equal to Stamina spent on the attack, as well as Stamina spent to move or hinder this bug while grappling.",
+      "Bugs grappling or grappled by this bug take 1 soakable damage at the start of each of their turns."
+    ]
+  },
+  {
+    "id": "stinger",
+    "name": "Stinger",
+    "category": "Natural Weapons",
+    "tags": ["dot"],
+    "cost": { "hunger": 3, "creep": 0.5 },
+    "description": [
+      "This bug has a retractable stinger in its abdomen.",
+      "This is a natural weapon that inflicts 3 damage over time, but receives -2 to hit unless the user is either flying or successfully grappling the target. Stingers are 1 Bulk."
+    ]
+  },
+  {
+    "id": "prehensile_tail",
+    "name": "Prehensile Tail",
+    "subtrait": ["stinger"],
+    "tags": ["dot"],
+    "category": "Natural Weapons",
+    "cost": { "hunger": 2, "creep": 0.5 },
+    "description": [
+      "This bug's stinger is instead located at the end of a tail, and has no penalty to hit."
+    ]
+  },
+  {
+    "id": "tentacle",
+    "name": "Tentacle",
+    "tags": ["grapple"],
+    "category": "Natural Weapons",
+    "cost": { "hunger": 3, "creep": 0.5 },
+    "description": [
+      "The bug possesses a long, lashing tentacle. It can hold, but not wield, objects. It has Reach and can deal 1 damage. The tentacle may be used to grapple at Reach, but its Might is always treated as 3 when doing so. Tentacle may be taken multiple times. Each tentacle after the first dedicated to a Reach grapple adds +1 to the Might check.",
+      "May be used for unarmed Arts."
+    ]
+  },
+  {
+    "id": "venomous_bite",
+    "name": "Venomous Bite",
+    "tags": ["dot"],
+    "subtrait": [],
+    "category": "Natural Weapons",
+    "cost": { "hunger": 3, "cute_or_creep": 0.5 },
+    "description": [
+      "This bug's bite becomes a natural weapon capable of dealing 1 damage and inflicting 2 DoT. If it has any form of bite attack, then it instead inflicts the DoT through said attack, but 1 Stamina must be spent to do so. This does not stack with other DoT from the same attack, but may be taken as a subtrait of said bite.",
+      "Venomous bites cannot be paired weapons."
+    ]
+  },
+  {
+    "id": "bookworm",
+    "name": "Bookworm",
+    "category": "Attribute",
+    "tags": ["insight"],
+    "cost": { "hunger": 1 },
+    "description": [
+      "This bug has neglected its body to improve its mind. Before other trait modifications, increase its Insight to 4, then decrease its Might or Shell by as many points as Insight was increased."
+    ]
+  },
+  {
+    "id": "bug_of_burden",
+    "name": "Bug of Burden",
+    "subtrait": ["bug_of_burden"],
+    "category": "Attribute",
+    "cost": { "hunger": 1 },
+    "description": [
+      "This bug's Load is increased by 1. This trait may be taken up to three times, but has a value of +2 Hunger each time it's taken past the first."
+    ]
+  },
+  {
+    "id": "bulky_shell",
+    "name": "Bulky Shell",
+    "tags": ["shell"],
+    "category": "Attribute",
+    "cost": { "hunger": 1 },
+    "description": [
+      "This bug has a huge shell, which often gets in the way. Before any other trait modifications, increase its Shell to 4, then decrease its Grace or Speed by as many points as Shell was increased. This trait also increases a bug's Bulk score by a single point."
+    ]
+  },
+  {
+    "id": "clumsy",
+    "name": "Clumsy",
+    "subtrait": ["clumsy"],
+    "category": "Attribute",
+    "cost": { "hunger": -3, "cute": 0.5 },
+    "description": [
+      "This bug is quite clumsy, decreasing its Grace by 1. This trait may be taken twice."
+    ]
+  },
+  {
+    "id": "concentrated_might",
+    "name": "Concentrated Might",
+    "tags": ["might"],
+    "category": "Attribute",
+    "cost": { "hunger": 1 },
+    "description": [
+      "This bug has the strength of a bug many times its size. Before other trait modifications, increase its Might to 4, then decrease its Grace by as many points as Might was increased."
+    ]
+  },
+  {
+    "id": "daydreamer",
+    "name": "Daydreamer",
+    "category": "Attribute",
+    "cost": { "hunger": -2, "cute": 0.5 },
+    "description": [
+      "Always reminiscing and captured by sentiment, this bug pays poor attention to what is in the here and now. It has a -2 die penalty on Initiative checks."
+    ]
+  },
+  {
+    "id": "dazzling",
+    "name": "Dazzling",
+    "subtrait": ["dazzling"],
+    "category": "Attribute",
+    "cost": { "hunger": 1, "cute": 1 },
+    "description": [
+      "This bug is pleasing to the senses, and tends to put other bugs at ease. May be taken twice."
+    ]
+  },
+  {
+    "id": "dull",
+    "name": "Dull",
+    "subtrait": ["dull"],
+    "category": "Attribute",
+    "cost": { "hunger": -3 },
+    "description": [
+      "This bug is simple minded, decreasing its Insight by 1. This trait may be taken twice."
+    ]
+  },
+  {
+    "id": "frail",
+    "name": "Frail",
+    "subtrait": ["frail"],
+    "category": "Attribute",
+    "cost": { "hunger": -3 },
+    "description": ["This bug is delicate, reducing its Shell by 1. This trait may be taken twice."]
+  },
+  {
+    "id": "graceful",
+    "name": "Graceful",
+    "subtrait": ["graceful"],
+    "tags": ["grace"],
+    "category": "Attribute",
+    "cost": { "hunger": 2, "cute": 0.5 },
+    "description": [
+      "This bug is exceptionally nimble, increasing its Grace by 0.5. This trait may be taken twice."
+    ]
+  },
+  {
+    "id": "hearty",
+    "name": "Hearty",
+    "tags": ["heart"],
+    "category": "Attribute",
+    "cost": { "hunger": 4 },
+    "description": ["This bug is of a particularly hearty breed, and so they gain 1 maximum Heart."]
+  },
+  {
+    "id": "infirm",
+    "name": "Infirm",
+    "category": "Attribute",
+    "cost": { "hunger": -4 },
+    "description": ["This bug's best years are behind it, and it has 1 fewer maximum Heart."]
+  },
+  {
+    "id": "insightful",
+    "name": "Insightful",
+    "subtrait": ["insightful"],
+    "tags": ["insight"],
+    "category": "Attribute",
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug is exceptionally perceptive, increasing its Insight by 0.5. This trait may be taken twice."
+    ]
+  },
+  {
+    "id": "keen",
+    "name": "Keen",
+    "tags": ["initiative"],
+    "category": "Attribute",
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug is able to react and adapt swiftly to new situations. It has a +2 die bonus on Initiative checks."
+    ]
+  },
+  {
+    "id": "mighty",
+    "name": "Mighty",
+    "tags": ["might"],
+    "category": "Attribute",
+    "cost": { "hunger": 2, "creep": 0.5 },
+    "description": [
+      "This bug is exceptionally strong, increasing its Might by 0.5. This trait may be taken twice."
+    ]
+  },
+  {
+    "id": "savant",
+    "name": "Savant",
+    "tags": ["insight"],
+    "category": "Attribute",
+    "cost": { "hunger": 1 },
+    "description": [
+      "This bug is brilliant, but lacks the social instincts most others have. Insight is increased to 4 before other trait modifications, but the bug receives a -3 dice penalty to all social checks requiring any form of conversation."
+    ]
+  },
+  {
+    "id": "slow",
+    "name": "Slow",
+    "subtrait": ["slow"],
+    "category": "Attribute",
+    "cost": { "hunger": -2 },
+    "description": [
+      "This bug is sluggish, decreasing its Speed by 1. This trait may be taken twice."
+    ]
+  },
+  {
+    "id": "spindly_grace",
+    "name": "Spindly Grace",
+    "category": "Attribute",
+    "tags": ["grace"],
+    "cost": { "hunger": 1 },
+    "description": [
+      "This bug is frail and elegant, despite its size. Before other trait modifications, Increase its Grace to 4, then decrease its Might by as many points as Grace was increased."
+    ]
+  },
+  {
+    "id": "creepy",
+    "name": "Creepy",
+    "subtrait": ["creepy"],
+    "category": "Attribute",
+    "cost": { "hunger": 1, "creep": 1 },
+    "description": [
+      "This bug is deeply unsettling, and puts other bugs on edge. May be taken twice."
+    ]
+  },
+  {
+    "id": "sturdy",
+    "name": "Sturdy",
+    "subtrait": ["sturdy"],
+    "category": "Attribute",
+    "tags": ["shell"],
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug is exceptionally resilient, increasing its Shell by 0.5. This trait may be taken twice."
+    ]
+  },
+  {
+    "id": "swift",
+    "name": "Swift",
+    "subtrait": ["swift"],
+    "tags": ["speed"],
+    "category": "Attribute",
+    "cost": { "hunger": 2 },
+    "description": ["This bug is fast, increasing its Speed by 1. This trait may be taken twice."]
+  },
+  {
+    "id": "weak",
+    "name": "Weak",
+    "subtrait": ["weak"],
+    "category": "Attribute",
+    "cost": { "hunger": -3, "cute": 0.5 },
+    "description": [
+      "This bug is quite weak, decreasing its Might by 1. This trait may be taken twice."
+    ]
+  },
+  {
+    "id": "civilized",
+    "name": "Civilized",
+    "category": "Mental",
+    "cost": { "hunger": -5, "cute": 1 },
+    "description": [
+      "This bug is not accustomed to hardship and pain. Whenever they have less than a full Heart Pool, the bug suffers a -1 die penalty to attack rolls and Attribute checks.",
+      "This bug's minimum Belly lost per rest is 5 instead of 10."
+    ]
+  },
+  {
+    "id": "dastardly",
+    "name": "Dastardly",
+    "category": "Mental",
+    "cost": { "hunger": 3, "cute": -0.5 },
+    "description": [
+      "This bug is no stranger to desperation, and will do anything to see tomorrow. When at 1 Heart or below, this bug’s Speed increases by 2, and they gain +2 dice on Soak rolls."
+    ]
+  },
+  {
+    "id": "destitute",
+    "name": "Destitute",
+    "category": "Mental",
+    "cost": { "hunger": -2, "creep": 0.5 },
+    "description": [
+      "This bug has struggled to get by in the wastes, and is used to running on an empty stomach. They require less Food, but have 50% the normal starting money."
+    ]
+  },
+  {
+    "id": "feral",
+    "name": "Feral",
+    "category": "Mental",
+    "cost": { "hunger": -5 },
+    "description": [
+      "This bug is not sapient, and their Insight and Soul decrease by 1. This bug's minimum Belly lost per rest is 5 instead of 10. Feral bugs may use the greater of Might or Grace for their natural weapons, but Grace-based melee attacks are at a -1 penalty unless it possesses Ranks in a Path that allows Grace for melee attacks.",
+      "Feral bugs cannot use non-natural weapons and tools."
+    ]
+  },
+  {
+    "id": "tool_user",
+    "subtrait": ["feral"],
+    "name": "Tool-User",
+    "category": "Mental",
+    "cost": { "hunger": 3 },
+    "description": ["This bug is able to use crafted weapons and tools, at a -1 die penalty."]
+  },
+  {
+    "id": "hivemind",
+    "name": "Hivemind",
+    "category": "Mental",
+    "cost": { "hunger": 2, "cute": 0.5, "creep": 0.5 },
+    "description": [
+      "This bug has an instinctual penchant for teamwork, and receives bonuses when working in tandem with allies. It gets +1 bonus die to hit a target that has been hit by an ally since this bug's last turn.",
+      "Additionally, this bug gains +1 reroll to relevant rolls when crafting or performing a profession alongside another doing the same task."
+    ]
+  },
+  {
+    "id": "pampered",
+    "name": "Pampered",
+    "category": "Mental",
+    "cost": { "hunger": 2, "cute": 0.5 },
+    "description": [
+      "This bug is used to a life of luxury and is thus used to having plenty to eat and drink. They require more Food to stay fed, but gain 50% extra starting money."
+    ]
+  },
+  {
+    "id": "phobia",
+    "name": "Phobia",
+    "category": "Mental",
+    "cost": { "hunger": -4, "cute": 0.5 },
+    "description": [
+      "This bug has a debilitating fear of something in particular. When faced with its fear, the bug must make an Insight check. The difficulty of this check is determined by the GM based on how commonly the feared object or concept is encountered and the severity of the current exposure.",
+      "If the bug fails this check, they receive a -1 die penalty to all rolls other than Soak and may not willingly confront or approach the target of their fear. This lasts until they can no longer sense their fear and a number of rounds have passed equal to how many successes by which they failed the Insight check."
+    ]
+  },
+  {
+    "id": "plucky",
+    "name": "Plucky",
+    "category": "Mental",
+    "cost": { "hunger": 3, "cute": 0.5 },
+    "description": [
+      "This bug has a Pool of 3 Pluck points. These may be dedicated to any roll, but add a reroll, rather than bonus die, to the roll. It may be dedicated even after the roll is made. Pluck recovers fully if the bug rests with 0 or greater Belly.",
+      "Maximum Pluck is increased by 1 point for every two open trait slots the bug has."
+    ]
+  },
+  {
+    "id": "talent",
+    "name": "Talent",
+    "category": "Mental",
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug has a natural penchant for a particular skill. When using that skill to add dice to a roll, one of those dice is an automatic success instead of being rolled. This Trait may be taken multiple times, but never for the same skill more than once."
+    ]
+  }
+]

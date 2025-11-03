@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Dispel",
+    "path": "spire",
+    "difficulty": 2,
+    "range": "touch",
+    "description": [
+      "One magic effect of Difficulty 2 or lesser within range ends. If prepared as a readied action, may counterspell a spell being cast.",
+      "At an increased Soul cost of 1, Dispel may end spells of 1 Difficulty higher, which can be invoked multiple times.",
+    ],
+  },
+  {
+    "id": 20,
+    "name": "Mirror Ally",
+    "path": "dream",
+    "difficulty": 2,
+    "range": {
+      "Target": "touch",
+      "Place Copy": "close",
+    },
+    "duration": "brief",
+    "description": [
+      "Upon casting, a glowing and slightly transparent reflection of the target appears somewhere else within range, though mighty foes may yield inferior reflections. Unwilling targets may resist using Insight. It possesses the same base stats, traits and equipment of the target, with the exception of Charms and consumables. It has no Arts, path ranks or special abilities, but shares the caster’s attuned spells. Its Heart stat equals 2 upon appearing, and the apparition is placed after the caster’s Initiative.",
+      "Its actions are controlled by the caster, and it shares its tax, Focus Actions, Soul and Stamina with the caster. The caster can gain no Soul or Essence from affecting their Mirror Allies with gathering methods.",
+      "Spending 1 Essence during the casting allows the Ally to use a single Art, spell, rank 1 path, or special ability the target knows.",
+    ],
+  },
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "name": "Backswing",
+    "cost": { "stamina": 1 },
+    "category": "general",
+    "type": "augmentation",
+    "description": [
+      "The user’s next attack has a-1 penalty to damage, but does not incur heavy weapon penalties. The user clears one stack of Off-Balance.",
+    ],
+  },
+  {
+    "id": 33,
+    "name": "Feinting Blow",
+    "cost": { "stamina": 1 },
+    "weapons": ["hook", "nail"],
+    "category": "hook",
+    "type": "unique",
+    "description": [
+      "If the next attack the user makes fails, the user may immediately make a normal attack with a compatible weapon they are currently holding. The user gains rerolls for this attack equal to their Insight score, rounded up, and it costs no Stamina. This Art does not reduce the Stamina cost of the user’s next attack.",
+      "This Art may be stacked with another Weapon Art, treating them as a single Art.",
+    ],
+  },
+]

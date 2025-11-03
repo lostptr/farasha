@@ -1,0 +1,21 @@
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@import '@skeletonlabs/skeleton';
+@import '@skeletonlabs/skeleton-svelte';
+@import '@skeletonlabs/skeleton/themes/cerberus';
+
+.trait-description {
+    h2 {
+        @apply h4;
+    }
+
+    table {
+        @apply table;
+        @apply outline-surface-200-800;
+        @apply outline-1;
+        @apply rounded-sm;
+    }
+}
