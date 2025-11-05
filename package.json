@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "engines": {
+    "node": "^24.10.0"
+  },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
@@ -12,7 +15,8 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint .",
-    "local:deploy-test": "cd build && npx http-server"
+    "local:deploy-test": "cd build && npx http-server",
+    "gen:traits": "node --experimental-transform-types src/lib/scripts/generateTraitIds.ts"
   },
   "devDependencies": {
     "@eslint/compat": "^1.4.1",
@@ -47,6 +51,7 @@
     "vite": "^7.1.7"
   },
   "dependencies": {
+    "bits-ui": "^2.14.2",
     "marked": "^16.4.1"
   }
 }

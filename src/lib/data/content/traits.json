@@ -220,11 +220,7 @@
     "id": "slam",
     "name": "Slam",
     "category": "Natural Weapons",
-    "cost": {
-      "Small": { "hunger": 1 },
-      "Average": { "hunger": 2 },
-      "Large": { "hunger": 3 }
-    },
+    "cost": { "Small": { "hunger": 1 }, "Average": { "hunger": 2 }, "Large": { "hunger": 3 } },
     "description": [
       "This bug is weighted to allow it to throw its bulk around to knock out the competition. If the bug moves at least 1 space toward a target or performs a jump action, it can make a single Slam attack against that target which deals 2 damage for a Small bug, 3 for an Average bug, and 4 for a Large bug. Attempts to parry it are made at -2.",
       "Large Slam attacks are a heavy weapon, and Average Slam attacks are 1 Bulk."
@@ -591,6 +587,749 @@
     "cost": { "hunger": 2 },
     "description": [
       "This bug has a natural penchant for a particular skill. When using that skill to add dice to a roll, one of those dice is an automatic success instead of being rolled. This Trait may be taken multiple times, but never for the same skill more than once."
+    ]
+  },
+  {
+    "id": "talent",
+    "name": "Talent",
+    "category": "Mental",
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug has a natural penchant for a particular skill. When using that skill to add dice to a roll, one of those dice is an automatic success instead of being rolled. This Trait may be taken multiple times, but never for the same skill more than once."
+    ]
+  },
+  {
+    "id": "alien_body",
+    "name": "Alien Body",
+    "category": "Physiological",
+    "cost": { "hunger": -4 },
+    "description": [
+      "This bug's body is configured strangely. Depending on how visible these differences are, this Trait grants up to +2 Spook at the cost of equal loss of Cute. Healers of most kinds find it difficult to understand and heal this bug. Any attempt by an outside source to heal this bug loses 1 success after it is rolled.",
+      "When using a drug or potion not specifically made for this kind of bug, roll a die. On a 1-2, it has no effect. On a 3-4, it has its normal effect. On a 5-6, it has double its effect."
+    ]
+  },
+  {
+    "id": "autobrewery",
+    "name": "Autobrewery",
+    "category": "Physiological",
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug is capable of fermenting alcohol within its body. Over the course of a rest, they produce 1 portion of gutbrew at the cost of 10 Belly.",
+      "A bug with the Large Stomach Trait may store up to 2 portions worth of gutbrew in their stomach instead of normal Food.",
+      "Alcohol stored in the stomach does not count against carry Load, and may be used by the bug at any time."
+    ]
+  },
+  {
+    "id": "blood_of_the_ancients",
+    "name": "Blood of the Ancients",
+    "category": "Physiological",
+    "cost": { "hunger": 1 },
+    "description": [
+      "Within this bug flows the blood of ancient ocean-dwellers, which possesses miraculous properties. When another bug drinks 1 Heart's worth of this bug's blood, they gain 1 Lifeblood Heart.",
+      "Bloodsuckers can instead drain this bug's Belly to gain this benefit, once per rest."
+    ]
+  },
+  {
+    "id": "primal_ichor",
+    "name": "Primal Ichor",
+    "subtrait": ["blood_of_ancients"],
+    "category": "Physiological",
+    "cost": { "hunger": 3 },
+    "description": [
+      "This bug's blood has strong healing properties. Bugs who consume it are granted an additional Lifeblood Heart, heal 1 point of damage to any Attributes and are cleared of 1 point of all DoT and negative Status Effects.",
+      "This bug may take completely unsoakable damage to cure an equal number of points of those effects from themselves, as a Focus Action."
+    ]
+  },
+  {
+    "id": "bloodsucker",
+    "name": "Bloodsucker",
+    "category": "Physiological",
+    "cost": { "hunger": 4 },
+    "description": [
+      "This bug may drink fresh blood for sustenance. It may draw blood using a 0 damage bite attack; on a success, it gains 5 Belly and the target loses 10 Belly. If the target is willing, incapacitated, or freshly slain, those numbers are doubled and this bug may trigger this ability multiple times, paying 1 Stamina per additional use.",
+      "This trait may be taken as a subtrait of a natural weapon used for a bite attack. If you do, it may only be used with that natural weapon."
+    ]
+  },
+  {
+    "id": "carnivore",
+    "name": "Carnivore",
+    "category": "Physiological",
+    "cost": { "hunger": -4, "creep": 0.5 },
+    "description": [
+      "This bug gains no Belly or beneficial effects from eating plant matter, and finds the taste repulsive."
+    ]
+  },
+  {
+    "id": "devourer",
+    "name": "Devourer",
+    "category": "Physiological",
+    "cost": { "Heart": { "hunger": 4 }, "Soul": { "hunger": 2 }, "Stamina": { "hunger": 1 } },
+    "description": [
+      "When choosing this trait, a bug must select one of its Pools. When this bug consumes at least 20 Belly worth of flesh or blood from a sapient bug, it may regain 1 point in the selected Pool, up to a cap of one higher than that pool's maximum. If the point is a point of Soul or Stamina, the bug can choose to save it when spending points from the chosen pool, to be spent later.",
+      "Devouring a corpse in combat for this bug is a Focus Action."
+    ]
+  },
+  {
+    "id": "herbivore",
+    "name": "Herbivore",
+    "category": "Physiological",
+    "cost": { "hunger": -4, "cute": 0.5 },
+    "description": [
+      "This bug gains no Belly or beneficial effects from eating flesh, and finds the taste repulsive."
+    ]
+  },
+  {
+    "id": "hibernation",
+    "name": "Hibernation",
+    "category": "Physiological",
+    "cost": { "hunger": 3 },
+    "description": [
+      "With this trait, a bug can stay still or sedentary for extended periods of time without running out of oxygen or food. While Hibernating, a bug cannot suffocate and its Belly consumed per rest is reduced to 5.",
+      "However, a Hibernating bug suffers a -2 penalty to notice things happening around it unless directly interacted with, and loses its first turn if woken abruptly."
+    ]
+  },
+  {
+    "id": "hidden_beauty",
+    "name": "Hidden Beauty",
+    "subtrait": ["any"],
+    "category": "Physiological",
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug has plumage or some other beautiful cosmetic that may be revealed for a +1 Cute bonus.",
+      "This trait may be taken as a sub-Trait of any other Trait. If it is, then the chosen Trait is undetectable unless this bug chooses to display it."
+    ]
+  },
+  {
+    "id": "hidden_threat",
+    "name": "Hidden Threat",
+    "subtrait": ["any"],
+    "category": "Physiological",
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug has frills or some other threatening cosmetic that may be revealed for a +1 Spook bonus.",
+      "This trait may be taken as a sub-Trait of any other Trait. If it is, then the chosen Trait is undetectable unless this bug chooses to display it."
+    ]
+  },
+  {
+    "id": "large_stomach",
+    "name": "Large Stomach",
+    "category": "Physiological",
+    "cost": { "hunger": 5 },
+    "description": [
+      "This bug is capable of eating vast quantities of food. It can consume and store food in excess of its Hunger score, up to 20 extra Belly. This additional reserve of Belly can be spent in place of Stamina at a rate of 10 Belly for each Stamina spent."
+    ]
+  },
+  {
+    "id": "luminous",
+    "name": "Luminous",
+    "category": "Physiological",
+    "cost": { "hunger": 1, "cute_or_creep": 0.5 },
+    "description": [
+      "This bug may emit a glow bright enough to see up to 7 squares away. While this light is on, attempts to spot this bug via sight are always successful so long as line of sight is possible."
+    ]
+  },
+  {
+    "id": "minor_flaw",
+    "name": "Minor Flaw",
+    "category": "Physiological",
+    "subtrait": ["minor_flaw"],
+    "cost": {
+      "Cuter": { "hunger": -1, "cute": 0.5 },
+      "Creepier": { "hunger": -1, "creep": 0.5 },
+      "Both": { "hunger": -1, "cute": 0.5, "creep": 0.5 }
+    },
+    "description": [
+      "The bug has a small defect, giving it -1 to a particular use of a skill or attribute. May be taken multiple times, and can be taken as a Subtrait of itself up to twice.",
+      "> Not all weaknesses are obvious, like a tendency to knock things over with your wings. Yes, looking at you, Herkal. Learn your foibles, for their severity can range from an inconvenience to a fatal flaw.",
+      "#### On Minor Flaws",
+      "No bug is perfect, everyone is flawed in their own unique way. If you have trouble thinking of an appropriate flaw, here are some examples to inspire you:",
+      "- **One eye:** -1 to checks relying on sight, +0.5 Spook \n - **Poor memory:** -1 to lore checks \n - **Klutzy:** -1 to checks requiring coordination"
+    ]
+  },
+  {
+    "id": "molting",
+    "name": "Molting",
+    "category": "Physiological",
+    "cost": { "hunger": 1 },
+    "description": [
+      "This bug has extraordinary regenerative abilities and may shed its old carapace in order to recover from many injuries. Over the course of a rest, this bug may choose to regrow a limb, fully recover a natural weapon's Quality, or restore an additional Heart at the expense of 5 extra Belly consumption.",
+      "Resting with 0 or greater Belly also fully heals all Primary and Secondary Attribute damage."
+    ]
+  },
+  {
+    "id": "drop_decoy",
+    "name": "Drop Decoy",
+    "subtrait": ["molting"],
+    "category": "Physiological",
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug may safely detach its limbs at will. Limbs detached in this way twitch and secrete pheromones that trick feral bugs and those that rely on scent into believing the limb to be this bug until closely inspected.",
+      "Bugs with the Prehensile Tail Trait may detach their tail instead. A bug with only one arm left gains the One Arm Trait until it regenerates; and gains the Armless Trait if it has no arms left. A bug with one or fewer legs remaining gains the Legless Trait until it has at least two legs again."
+    ]
+  },
+  {
+    "id": "quick_molt",
+    "name": "Quick Molt",
+    "subtrait": ["molting"],
+    "category": "Physiological",
+    "cost": { "hunger": 4 },
+    "description": [
+      "This bug is able to molt extremely quickly. By expending the appropriate amount of Belly, it may Focus to molt, for up to 15 Belly. While molting, and for 3 rounds afterwards, the bug may not add Shell to its soak rolls."
+    ]
+  },
+  {
+    "id": "osmotic_aid",
+    "name": "Osmotic Aid",
+    "category": "Physiological",
+    "cost": { "hunger": 2 },
+    "description": ["This bug and those that rest near it recover an additional Heart each rest."]
+  },
+  {
+    "id": "pheromones",
+    "name": "Pheromones",
+    "category": "Physiological",
+    "cost": { "hunger": 3 },
+    "description": [
+      "This bug can release a cloud of special pheromones once per scene at the cost of 1 Stamina. This cloud is undetectable by bugs without the trait Scent and affects everything within 5 squares of the user. The user adds 1 die to social checks made on bugs affected by the cloud.",
+      "The cloud lingers for the rest of the scene and everything within is utterly undetectable to bugs that rely on Scent."
+    ]
+  },
+  {
+    "id": "predigestion",
+    "name": "Predigestion",
+    "category": "Physiological",
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug may spend a rest converting food up to its Belly value into food edible to both carnivores and herbivores. It may also convert Belly it has already consumed for this purpose, but may not reduce its Belly to below 0 in the process. This food spoils if not eaten or preserved during the same rest it was produced.",
+      "The Large Stomach Trait allows up to 20 additional Belly worth of food to be converted."
+    ]
+  },
+  {
+    "id": "scavenger",
+    "name": "Scavenger",
+    "category": "Physiological",
+    "cost": { "hunger": 4, "cute": -0.5 },
+    "description": [
+      "This bug gains +2 to resist potion overdoses, and rotten food does not lose its Belly value for the bug or inflict poison DoT to the bug. The bug can smell rotting plants and meat for vast distances, and gains a +2 bonus when searching for rotten food.",
+      "When the bug makes a Stash Scavenge roll, two of the dice are automatic successes."
+    ]
+  },
+  {
+    "id": "silk_production",
+    "name": "Silk Production",
+    "category": "Physiological",
+    "cost": { "hunger": 5 },
+    "description": [
+      "This bug is capable of expelling sticky strands of silk. This may be used as a rope, which gives +2 to climbing attempts and can be used to cross gaps.",
+      "Web may also be placed up to two spaces away by spending a Stamina, though this may only be done once per turn. Bugs attempting to leave a webbed square must roll more than 2 successes on a Might check or be held in place, wasting the remainder of their movement. Extra Stamina may be dedicated to this check for bonus dice. Ignoring rough terrain makes one immune to the effects of webbed squares.",
+      "A target may instead be webbed directly, which works as a Natural Net Weapon."
+    ]
+  },
+  {
+    "id": "song",
+    "name": "Song",
+    "category": "Physiological",
+    "cost": { "hunger": 1 },
+    "description": [
+      "This bug is capable of creating a distinctive song, capable of being heard over long distances. When this trait is chosen, the song must be defined as either soothing or haunting. If soothing, the user treats its Cute as 1 higher in interactions with bugs who have heard its song. If haunting, the user treats its Spook as 1 higher instead. Songs created by this trait are known to sometimes attract the attention of spirits."
+    ]
+  },
+  {
+    "id": "stench_cloud",
+    "name": "Stench Cloud",
+    "category": "Physiological",
+    "cost": { "hunger": 1, "cute": -0.5 },
+    "description": [
+      "This bug can release a cloud of unbearably smelly pheromones, affecting adjacent squares. Bugs within the cloud who are not of the bug's species and are unused to such stenches receive -1 dice to all rolls made within the cloud, and everything within is utterly undetectable to bugs without Stench Cloud that rely on Scent.",
+      "The bug may turn their stench on or off as a Focus Action."
+    ]
+  },
+  {
+    "id": "blind",
+    "name": "Blind",
+    "category": "Sense",
+    "cost": { "hunger": -5 },
+    "description": [
+      "This bug completely lacks a sense of sight. Scent and Tremorsense may be taken as sub-Traits of Blind."
+    ]
+  },
+  {
+    "id": "compound_eyes",
+    "name": "Compound Eyes",
+    "category": "Sense",
+    "cost": { "hunger": 4 },
+    "description": [
+      "This bug has a pair of large compound eyes and a keen spatial awareness. It gets +1 reroll on rolls to detect things by sight, and may increase the range of any ranged attack they make by 1 square."
+    ]
+  },
+  {
+    "id": "darkvision",
+    "name": "Darkvision",
+    "category": "Sense",
+    "cost": { "hunger": 2, "creep": 0.5 },
+    "description": [
+      "This bug can see just as far in any darkness as they could in fully lit conditions. This bug’s eyes also faintly glow, making it very easy to spot in total darkness unless its eyes are closed."
+    ]
+  },
+  {
+    "id": "nearsighted",
+    "name": "Nearsighted",
+    "category": "Sense",
+    "cost": { "hunger": -2 },
+    "description": ["This bug has particularly poor eyesight. It is blind beyond 10 squares."]
+  },
+  {
+    "id": "scent",
+    "name": "Scent",
+    "subtrait": ["standalone", "blind"],
+    "category": "Sense",
+    "cost": { "hunger": 4 },
+    "description": [
+      "This bug may effectively “see” as long as they are not adjacent to more than three bugs. This sense is not affected by darkness, though especially smelly things nearby may reduce this sense’s range as darkness would for sight."
+    ]
+  },
+  {
+    "id": "tremorsense",
+    "name": "Tremorsense",
+    "subtrait": ["standalone", "blind"],
+    "category": "Sense",
+    "cost": { "hunger": 4 },
+    "description": [
+      "This bug may effectively “see” when in contact with the ground or a wall, or within a liquid. Airborne bugs are harder to pinpoint, and this bug receives -2 dice penalty on attack rolls made to hit them when using this sense alone. Bugs on the other side of solid surfaces can be detected unless they remain perfectly still.",
+      "This sense is not affected by darkness, though especially noisy things nearby may reduce this sense’s range as darkness would for sight."
+    ]
+  },
+  {
+    "id": "barren",
+    "name": "Barren",
+    "incompatible": ["soft_body"],
+    "restriction": ["must have a Shell score of 2 or greater"],
+    "category": "Mystical",
+    "cost": { "hunger": 2, "creep": 1 },
+    "description": [
+      "Offspring produced by Dust-Cursed bugs may carry some of the curse themselves. These bugs’ shells have a dry, chalky quality to them, not unlike the shell of a husk, and they are possessed of a similar resilience. The bug’s Shell score becomes an Absorption score instead, though it can still be used to make Shell checks to resist.",
+      "However, whenever the bug takes Heart damage from an attack, their Absorption score decreases by 1, to a minimum of 2. Effects that would damage Shell damage Absorption instead, to a minimum of 1. Absorption damage heals at a rate of 1 point each time the bug rests.",
+      "Should a Barren bug ever die of starvation, they immediately become a Husk with a Shell score equal to their current Absorption, as if they had the Dust-Curse. However, the Dust-Curse grants them a Husk’s innate immunity to damage from Sandstorms."
+    ]
+  },
+  {
+    "id": "pale_fluff",
+    "name": "Pale Fluff",
+    "category": "Mystical",
+    "cost": { "hunger": 3, "cute": 0.5 },
+    "description": [
+      "Some part or all of this bug is covered in fluff strongly attuned to the patterns of the dream. After Resting, the bug regains 1 Soul. If it exceeds their maximum, they gain 1 Glory Soul instead.",
+      "This bug also always knows when it is in the presence of spirits or powerful magic. At GM discretion, it may have a vague idea of how powerful the source is upon a successful Insight check, but cannot pinpoint the source with this sense alone."
+    ]
+  },
+  {
+    "id": "soulmates",
+    "name": "Soulmates",
+    "restriction": ["must be taken by two bugs together"],
+    "category": "Mystical",
+    "cost": { "hunger": 3 },
+    "description": [
+      "These two bugs are bonded by fates intertwined. Be it as lovers, rivals, comrades, or nemeses, they will always find their way back to each other.",
+      "These two bugs have a Soul pool shared between the both of them, though a bug may deny the other from accessing their portion of the shared Soul pool. The Soulmates feel an instinctive pull in the direction of their counterpart."
+    ]
+  },
+  {
+    "id": "spiral_mark",
+    "name": "Spiral Mark",
+    "category": "Mystical",
+    "cost": { "hunger": 4 },
+    "description": [
+      "The bug's shell is marked by a spiral, a mystical pattern which warps magic around it. The bug may spend one Soul when they are affected by magic damage. If they do, they may attempt a Soak roll against the damage.",
+      "Bugs with an Absorption score or external shell that has an Absorption score may use that value in place of Shell on the roll."
+    ]
+  },
+  {
+    "id": "armless",
+    "name": "Armless",
+    "category": "Body",
+    "cost": { "hunger": -10 },
+    "description": [
+      "This bug has no arms, and so cannot wield a weapon or shield, and has great difficulty doing things that rely on manual dexterity.",
+      "This difficulty can range from -1 to impossible, at GM discretion."
+    ]
+  },
+  {
+    "id": "contortionist",
+    "name": "Contortionist",
+    "category": "Body",
+    "cost": { "hunger": 1 },
+    "description": [
+      "This bug's body is thin or bendy, able to slide into small spaces. It can squeeze into spaces fit for a bug one size smaller than it without penalties."
+    ]
+  },
+  {
+    "id": "unfold",
+    "name": "Unfold",
+    "category": "Body",
+    "restriction": ["must be of Large Size"],
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug may spend 1 Stamina on its turn to stretch its body out, occupying 4 squares in a straight line horizontally or vertically. At the start of its next turn, the bug folds back up from any of the occupied squares."
+    ]
+  },
+  {
+    "id": "extra_arms",
+    "name": "Extra Arms",
+    "category": "Body",
+    "cost": { "hunger": 4 },
+    "description": ["This bug has an extra pair of arms equally as functional as their others."]
+  },
+  {
+    "id": "extra_legs",
+    "name": "Extra Legs",
+    "category": "Body",
+    "cost": { "hunger": 3 },
+    "description": [
+      "This bug has one or two extra pairs of legs, and gets +3 bonus dice on any roll to resist being knocked down or displaced and its maximum Load is increased by 1.",
+      "If the bug would be moved by an ability with no check to resist, it may roll 3d6, and resist on at least 1 success."
+    ]
+  },
+  {
+    "id": "polypod",
+    "name": "Polypod",
+    "category": "Body",
+    "cost": { "hunger": 3 },
+    "description": [
+      "This bug has many, many legs. It cannot be knocked down or displaced by anything less than fully lifting it from the ground.",
+      "It also may choose to reduce its Speed by 1 in order to ignore the effects of rough terrain during its turn."
+    ]
+  },
+  {
+    "id": "itsy_bitsy",
+    "name": "Itsy Bitsy",
+    "category": "Body",
+    "restriction": ["must be of Small Size"],
+    "cost": { "hunger": 2, "cute": 1 },
+    "description": [
+      "This bug is exceptionally small, and its Might and Bulk are decreased by 1. This bug may not take other Traits that affect its Might score. Because of its size, the bug can fit into very small spaces, and is more easily overlooked in favor of greater threats.",
+      "This bug treats all weapons or shields with Bulk over Light as two-handed, and any natural weapons it has that deal more than 2 damage are reduced to 2 damage.",
+      "Undetected itsy bitsy bugs may latch onto a Large or larger bug without being noticed, and may suck blood freely if they also have Bloodsucker Trait, without dealing damage or alerting the bug. Dealing damage or draining Belly to a negative value always alerts the bug."
+    ]
+  },
+  {
+    "id": "legless",
+    "name": "Legless",
+    "category": "Body",
+    "cost": { "hunger": -2 },
+    "description": [
+      "The bug has no legs to speak of, and must wriggle, slither, or slide along the ground. It receives a -1 to dodge rolls, and -1 to Speed, but receives a +1 to resist effects that would move it or give it Off-Balance stacks.",
+      "Effects that would grant no roll instead grant a 1d6 to resist them."
+    ]
+  },
+  {
+    "id": "aquatic_tail",
+    "name": "Aquatic Tail",
+    "subtrait": ["legless"],
+    "category": "Body",
+    "cost": { "hunger": 1 },
+    "description": [
+      "Though the bug is ill suited to moving on land, their long tail is capable of moving swiftly through the water. They suffer no dodge penalty in the water, and have +3 Speed while swimming."
+    ]
+  },
+  {
+    "id": "natural_saddle",
+    "name": "Natural Saddle",
+    "category": "Body",
+    "cost": { "hunger": 1 },
+    "description": [
+      "This bug's body is perfect for a rider. It has +2 Load for carrying passengers."
+    ]
+  },
+  {
+    "id": "one_arm",
+    "name": "One Arm",
+    "incompatible": ["armless"],
+    "category": "Body",
+    "cost": { "hunger": -4 },
+    "description": [
+      "This bug has one arm, and so may only wield a single one-handed object. Cannot be taken with Armless."
+    ]
+  },
+  {
+    "id": "soft_body",
+    "name": "Soft Body",
+    "category": "Body",
+    "cost": { "cute_or_creep": 0.5 },
+    "description": [
+      "This bug lacks an exoskeleton, but has increased Heart. Shell may not be added to Soak rolls, but increase Heart by 4. The bug heals 2 additional Heart when resting."
+    ]
+  },
+  {
+    "id": "external_shell",
+    "name": "External Shell",
+    "subtrait": ["soft_body"],
+    "category": "Body",
+    "cost": { "hunger": 5 },
+    "description": [
+      "This bug's body is soft and vulnerable, but they have an external shell into which they may retreat for safety. This shell has Absorption and durability equal to this bug's base Shell score (base Shell is the bug's normal Shell score ignoring buffs, debuffs, and Attribute damage).",
+      "This bug may spend 1 Stamina during its turn to retreat into or leave its shell. While within its shell, the shell takes all attacks for the bug, who may not attack, defend, target Spells outside its shell or move while inside.",
+      "This shell is a part of the bug and the bug it is attached to decides whether it counts as an object or not for any Spell or ability that affects objects differently.",
+      "The external shell recovers 1 durability whenever this bug rests or heals from focusing, and is also repairable as armor would be."
+    ]
+  },
+  {
+    "id": "hoarder",
+    "name": "Hoarder",
+    "subtrait": ["external_shell"],
+    "category": "Body",
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug has an external shell made of many small trinkets and objects. If a mundane object that would cost 100 Geo or less would be useful in a given situation, the bug may take it off of their shell, at the cost of 1 Durability. Retrieving an item in this way during combat costs 3 Stamina.",
+      "Weapons produced last for 1 combat, but have Quality of 0. Items obtained in this way are worn, easily broken, and do not sell for anything. Edible material may not be obtained in this way."
+    ]
+  },
+  {
+    "id": "shell_thief",
+    "name": "Shell Thief",
+    "subtrait": ["external_shell"],
+    "category": "Body",
+    "cost": { "hunger": 0 },
+    "description": [
+      "This bug's external shell is not a part of its physiology, and instead the bug is adapted to use shells it comes across, provided they came from a bug no more than 1 size different from it. Such shells use their original owner's Shell scores to determine their Absorption and durability.",
+      "A shell has Bulk equal to its original owner's Bulk score, though this does not count against this bug's Load when worn.",
+      "This bug's shell always counts as an object and can only recover durability by being repaired."
+    ]
+  },
+  {
+    "id": "regeneration",
+    "name": "Regeneration",
+    "subtrait": ["soft_body"],
+    "incompatible": ["external_shell"],
+    "category": "Body",
+    "cost": { "hunger": 5 },
+    "description": [
+      "If this bug ends a turn with any Heart missing, it may roll a Shell check, and heal Hearts equal to the successes. 5 Belly is lost per Heart regenerated in this way.",
+      "This bug may not regenerate damage it is Vulnerable to using this Trait."
+    ]
+  },
+  {
+    "id": "vulnerability",
+    "name": "Vulnerability",
+    "category": "Body",
+    "cost": { "hunger": -6 },
+    "description": [
+      "This bug has a particular weakness. Whenever it is dealt damage or affected by its vulnerability, it takes 1 completely unsoakable damage immediately after.",
+      "Vulnerabilities should be a broad type of damage, such as \"blunt\" or \"fire\", as adjudicated by the GM. It may also include allergies to certain substances."
+    ]
+  },
+  {
+    "id": "climbing",
+    "name": "Climbing",
+    "category": "Movement",
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug may move at full speed while climbing, and can even climb on ceilings. This bug also does not need to roll to successfully climb except on greased or moving surfaces."
+    ]
+  },
+  {
+    "id": "leaping",
+    "name": "Leaping",
+    "category": "Movement",
+    "cost": { "hunger": 4 },
+    "description": [
+      "This bug has powerful legs adapted for leaping. Once per round, at the cost of 3 Stamina, this trait may be used by this bug to leap up to 10 squares away. This leap may be done in place of a dodge. If it is, use Speed to dodge rather than Grace, and then leap to a square in range if the dodge has at least 1 success, without provoking attacks from the initial attacker.",
+      "A bug with this trait may also make an attack against a flying enemy while leaping. Itsy Bitsy bugs do not provoke attacks of opportunity when they leap."
+    ]
+  },
+  {
+    "id": "pounce",
+    "name": "Pounce",
+    "subtrait": ["leaping"],
+    "category": "Movement",
+    "cost": { "hunger": 2 },
+    "description": [
+      "When this bug leaps during its turn, it may immediately make a melee attack upon landing. This attack costs no additional Stamina to initiate and Stamina spent on the leap is also dedicated to the attack."
+    ]
+  },
+  {
+    "id": "lesser_flight",
+    "name": "Lesser Flight",
+    "category": "Movement",
+    "cost": { "hunger": 4 },
+    "description": [
+      "This bug may fly while moving at the cost of 1 Stamina, but must stop flying at the end of its turn. It may also stay aloft at the end of the turn for an additional 1 Stamina as long as it remains within 5 squares of the ground.",
+      "If the bug spends any more Stamina or Soul while aloft, except to remain there, it must land afterwards."
+    ]
+  },
+  {
+    "id": "elytra",
+    "name": "Elytra",
+    "subtrait": ["lesser_flight"],
+    "category": "Movement",
+    "cost": { "hunger": -3 },
+    "description": [
+      "This bug's wings are folded away in its body, and require a focus action to unfurl. While its wings are unfurled, this bug's Shell is reduced by 1."
+    ]
+  },
+  {
+    "id": "flight",
+    "name": "Flight",
+    "subtrait": ["lesser_flight"],
+    "category": "Movement",
+    "cost": { "hunger": 4 },
+    "description": [
+      "Spending Stamina or Soul while aloft no longer causes this bug to land. Stamina tax no longer resets to 0 at the beginning of the bug's turn, until the bug lands."
+    ]
+  },
+  {
+    "id": "airborne",
+    "name": "Airborne",
+    "subtrait": ["lesser_flight"],
+    "category": "Movement",
+    "cost": { "hunger": 0 },
+    "description": [
+      "The bug is highly specialized for flight, but is more clumsy on the ground. The bug's land speed is lowered by 2, but flying speed is increased by 2."
+    ]
+  },
+  {
+    "id": "swimming",
+    "name": "Swimming",
+    "category": "Movement",
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug may move according to its full Speed while swimming, and does not need to roll to stay afloat in calm waters."
+    ]
+  },
+  {
+    "id": "tunneling",
+    "name": "Tunneling",
+    "category": "Movement",
+    "cost": { "hunger": 5 },
+    "description": [
+      "This bug can burrow through soil at a rate of 1 square for 2 Speed. It may choose to leave a tunnel behind, or not.",
+      "If the bug is underground with no source of air, it will suffer Suffocation."
+    ]
+  },
+  {
+    "id": "water_treading",
+    "name": "Water Treading",
+    "category": "Movement",
+    "cost": { "hunger": 3 },
+    "description": [
+      "This bug may walk across the surface of liquids without sinking in. This allows it to do anything it would require a surface to do, such as jumping, as well as allowing it to stay afloat without restricting the use of its arms.",
+      "Additionally, any swimming bug attempting to attack this bug while water treading receives -2 to hit."
+    ]
+  },
+  {
+    "id": "waterbreathing",
+    "name": "Waterbreathing",
+    "subtrait": ["standalone", "swimming"],
+    "category": "Movement",
+    "cost": { "hunger": 2 },
+    "description": ["This bug can breathe underwater. May be taken as a Subtrait of Swimming."]
+  },
+  {
+    "id": "blocking_arms",
+    "name": "Blocking Arms",
+    "category": "Natural Defense",
+    "cost": { "hunger": 2 },
+    "description": [
+      "This bug has broad, thick shelled appendages that can be used to block attacks. When unoccupied, each arm counts as a shield with Quality equal to half of the bug's Shell, rounded up. These are upgraded using shield upgrades instead of weapon upgrades and can be taken even with natural weapons that replace an arm completely.",
+      "If this bug also has the Spiky Trait, it may take the Spiked modifier on this trait without spending an Attribute advancement."
+    ]
+  },
+  {
+    "id": "shelled_arms",
+    "name": "Shelled Arms",
+    "subtrait": ["blocking_arms"],
+    "category": "Natural Defense",
+    "cost": { "hunger": 4 },
+    "description": [
+      "This bug's arms are massive, and may block an entire face of its body. It may raise both arms to gain the effect of wielding a carapace shield.",
+      "Damage dealt to the shelled arms while being used in this way is dealt to both arms."
+    ]
+  },
+  {
+    "id": "camouflage",
+    "name": "Camouflage",
+    "category": "Natural Defense",
+    "cost": { "hunger": 1 },
+    "description": [
+      "The bug is colored to aid it in hiding in a certain type of terrain. It gains +2 rerolls on Stealth attempts in the subject terrain."
+    ]
+  },
+  {
+    "id": "active_camouflage",
+    "name": "Active Camouflage",
+    "subtrait": ["camouflage"],
+    "category": "Natural Defense",
+    "cost": { "hunger": 3 },
+    "description": [
+      "The bug's camouflage can adapt to its environment. It can now change colors to blend in with any environment and has its Stealth bonus in any of them."
+    ]
+  },
+  {
+    "id": "defensive_curl",
+    "name": "Defensive Curl",
+    "category": "Natural Defense",
+    "cost": { "hunger": 4 },
+    "description": [
+      "This bug is able to retreat into a defensive position. This must be done as the bug's first action, and ends the bug's turn. Until the bug's next turn, it has an Absorption value equal to its Shell."
+    ]
+  },
+  {
+    "id": "rolling_dash",
+    "name": "Rolling Dash",
+    "subtrait": ["defensive_curl", "external_shell"],
+    "category": "Natural Defense",
+    "cost": { "hunger": 3 },
+    "description": [
+      "Before this bug ends its turn while using defensive curl, it may roll up to 5 + Speed squares in a straight line. If it has Spiky or Slam, it may make one attack with one of these natural weapons before ending its turn.",
+      "May be taken as a Subtrait of External Shell, instead, becoming usable while the bug is retracted into their shell."
+    ]
+  },
+  {
+    "id": "external_coat",
+    "name": "External Coat",
+    "category": "Natural Defense",
+    "cost": { "hunger": 2, "cute_or_creep": 0.5 },
+    "description": [
+      "This bug has an outer layer which protects and insulates it. This bug may make soak attempts against environmental damage, and may attempt to soak magic damage with a single die."
+    ]
+  },
+  {
+    "id": "mimicry",
+    "name": "Mimicry",
+    "category": "Natural Defense",
+    "cost": { "hunger": 3, "cute_or_creep": 0.5 },
+    "description": [
+      "This bug's appearance and smell greatly resembles that of a particular inanimate object. When in an environment that could reasonably have that object, this bug treats all of its dice to hide as sixes against any bug that is not aware of this ability and specifically seeking out a mimic. In environments that wouldn't normally have the mimicked object, this bug loses all benefits of Mimicry.",
+      "A bug with mimicry may instead choose for its mimicry to emulate a different kind of bug."
+    ]
+  },
+  {
+    "id": "poisonous",
+    "name": "Poisonous",
+    "category": "Natural Defense",
+    "cost": { "hunger": 3 },
+    "description": [
+      "This bug's body is toxic, poisoning those that attempt to eat it. Whenever this bug is damaged by a bite, the bug that bit it receives a Status Effect which deals 1 environmental damage per turn with stacks equal to the damage taken.",
+      "This bug's flesh is also inedible, and will inflict 1 Heart of damage for every 10 Belly restored."
+    ]
+  },
+  {
+    "id": "toxic_blood",
+    "name": "Toxic Blood",
+    "subtrait": ["poisonous"],
+    "category": "Natural Defense",
+    "cost": { "hunger": 3 },
+    "description": [
+      "This bug's blood is caustic, and damage taken from any attack will spray blood onto the adjacent square closest to the attacker, applying a Status Effect to any sprayed bug which deals 1 environmental damage per turn with stacks equal to the damage taken. If more than one square is equally close to the attacker, this bug may choose which gets sprayed."
+    ]
+  },
+  {
+    "id": "resistant",
+    "name": "Resistant",
+    "category": "Natural Defense",
+    "cost": { "hunger": 4 },
+    "description": [
+      "This bug is quite resistant to a specific type of damage. Choose a specific kind of damage, chosen with GM approval, such as \"blunt\" or \"fire\". Even if the damage is normally unsoakable, the bug receives 4 extra dice that may be used to Soak it.",
+      "If the bug suffers a negative Status Effect related to their resistance, the bug can roll 4d6 to resist the Status Effect pool or duration, reducing it by the successes."
     ]
   }
 ]
